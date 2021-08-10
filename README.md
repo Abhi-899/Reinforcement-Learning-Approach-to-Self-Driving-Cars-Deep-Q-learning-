@@ -77,4 +77,54 @@ orientation = Vector(*self.car.velocity).
 angle((xx,yy))/180.
 
 ```
+## The input states
+In the input state, we need information telling the AI whether it is about to move
+off the road or hit an obstacle.Our car has three sensors giving us
+signals about how much sand is around them.The blue sensor tells us if there's any
+sand at the left of the car, the red sensor tells us if there is any sand in front of the
+car, and the yellow sensor tells us if there is any sand at the right of the car. The
+signals of these sensors are already coded into three variables: signal1, signal2,
+and signal3. These signals will tell the AI if it's about to hit some obstacle or about
+to get out of the road, since the road is delimited by sand.With these four
+elements, signal1, signal2, signal3, and orientation, you have everything
+you need to be able to drive from one location to another, while staying on the road,
+and without hitting any obstacles.Input state = (orientation, signal1, signal2, signal3)
+
+## The Output Actions
+The three possible actions of move forward, turn left,
+and turn right make logical sense with the goal, constraint, and input states we
+have, and we can define them as the three following rotations:
+
+rotations = [turn 0° (that is, move forward), turn 20° to the left, turn 20° to the right]
+
+## The Rewards
+We must simply remember what the goal and
+constraints are:
+
+• The goal is to make round trips between the Airport and Downtown.
+
+• The constraints are to stay on the road and avoid obstacles if any. In other
+words, the constraint is to stay away from the sand.
+
+Let us have a look at the reward policy:
+
+1. We give the AI a good reward when it gets closer to the destination.
+
+2. We give the AI a bad reward when it gets further away from the destination.
+
+3. We give the AI a bad reward if it's about to drive onto some sand.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
