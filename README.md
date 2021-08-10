@@ -174,9 +174,23 @@ Now all we have to do is install python 3.6, Kivy and pytorch. Then run the map.
 ```
 python map.py
 ```
-Once you click on the save button the states and the weigts optimization of the previous transition are saved in the   and load button loads the model updates of the last transition whi
-## Further Improvements
+Once you click on the save button the states and the weigts optimization of the previous transition are saved in the last_brain.pth file and load button loads the model updates of the last transition based on which the car makes the movements. The plot for rewards vs iterations is given below:
+![Rewards_Plot](https://user-images.githubusercontent.com/64439578/128896658-d6305607-e3c1-407a-a187-07e0f0eb1f04.png)
 
+## Further Improvements
+1. Add another hidden layer to the DQN also using RELU.
+
+2. Once the car “insect” reaches the goal it earns a reward of 2
+
+3. Decrease punishment from going further away from the goal
+
+4. Set temperature parameter to 75.
+
+5. Add a timer for how long it takes for the agent to reach the destination. If the agent does not find the destination after 10 seconds it gets a punishment (reward -= 0.3), after 20 seconds more punishment (reward -= 0.5) and so on. The more time it takes to find the destination the more punishment it gets. Added this timer to the list of signals passed to the DQN so it can learn from it:
+```
+last_signal = [self.car.signal1, self.car.signal2, self.car.signal3, orientation, -orientation, self.last_time]
+```
+6.  I’m still trying to tune the rewards and maybe add some dimensionality to the Dqn in the future in order to improve the performance. I am also working on map that has a larger window so I can draw more complex paths. Maybe add Prioritized Experience Replay.
 
 
 
