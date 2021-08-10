@@ -8,6 +8,7 @@ https://user-images.githubusercontent.com/64439578/128899114-fb08717e-c6a3-4fff-
 
 ## Building the environment
 The whole environment for this project is built with Kivy, from start to finish. The implementatipon is done in the car.kv file where we define the three sensors that helps us record the distance from the sand obstacles. And we communicate with the car through map.py.
+![Screenshot (3)](https://user-images.githubusercontent.com/64439578/128899727-a30e2bb7-1b80-4d9f-b940-0ee254fb7f64.png)
 
 ## Setting the Parameters
 The inputs, outputs, and rewards are all functions of these parameters. Let's list them
