@@ -2,6 +2,10 @@
 In this project our aim is to ; to train the self-driving car to make round
 trips between the left top end and right bottom. We try to achieve this by training a deep q-learning agent using an environment where we allow the agent perform a certain no. of actions(turn 0° (that is, move forward), turn 20° to the left, turn 20° to the right in this case study) based on a reward policy.
 
+
+https://user-images.githubusercontent.com/64439578/128899114-fb08717e-c6a3-4fff-ae62-ecf05456b374.mp4
+
+
 ## Building the environment
 The whole environment for this project is built with Kivy, from start to finish. The implementatipon is done in the car.kv file where we define the three sensors that helps us record the distance from the sand obstacles. And we communicate with the car through map.py.
 
