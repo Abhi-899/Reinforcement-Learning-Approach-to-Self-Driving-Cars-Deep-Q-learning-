@@ -114,9 +114,68 @@ Let us have a look at the reward policy:
 
 3. We give the AI a bad reward if it's about to drive onto some sand.
 
+On that note, here are the rewards we'll give in each case:
 
+1. The AI gets a bad reward of -1 if it drives onto some sand. 
 
+2. The AI gets a bad reward of -0.2 if it moves away from the destination.
 
+3. The AI gets a good reward of 0.1 if it moves closer to the destination.
+
+## The AI Solution:
+The ai or brain of the car is defined using the following deep Q-learning process(in ai.py file):
+
+Initialization:
+
+1. The memory of the experience replay is initialized to an empty list, called
+memory in the code.
+
+2. The maximum size of the memory is set, called capacity in the code.
+
+At each time t, the AI repeats the following process, until the end of the epoch:
+
+1. The AI predicts the Q-values of the current state st. Therefore, since three
+actions can be played (0 <-> 0°, 1 <-> 20°, or 2 <-> -20°), it gets three
+predicted Q-values.
+
+2. The AI performs an action selected by the Softmax method:
+   
+   a_t=Softmax{Q(s_t,a)}
+
+3. The AI receives a reward R(s_t,a_t), which is one of -1, -0.2 or +0.1.
+
+4. The AI reaches the next state s_(t+1), which is composed of the next three signals
+from the three sensors, plus the orientation of the car.
+
+5. The AI appends the transition (s_t,a_t,r_t,s_(t+1)) to the memory.
+
+6. The AI takes a random batch B which is a subset of M of transitions. For all the transitions
+(s_tB,a_tB,r_tB,s_(tB+1)) of the random batch B:
+
+° The AI gets the predictions: Q(s_tB,a_tB)
+
+° The AI gets the targets
+
+° The AI computes the loss between the predictions and the targets over
+the whole batch B
+
+![Screenshot (4)](https://user-images.githubusercontent.com/64439578/128852019-eae1df3b-7548-4e53-b964-0d2df62fd6c2.png)
+
+° Finally, the AI backpropagates this loss error into the neural network,
+and through stochastic gradient descent updates the weights according
+to how much they contributed to the loss error.
+
+The entire implementation of the above steps are done in the 'ai.py' file. The model structure is as given below:
+
+![Screenshot (7)](https://user-images.githubusercontent.com/64439578/128895033-0790b442-b8ef-46d3-9748-c8d7ea4031c4.png)
+
+## Demo
+Now all we have to do is install python 3.6, Kivy and pytorch. Then run the map.py file using command on the CMD:
+```
+python map.py
+```
+Once you click on the save button the states and the weigts optimization of the previous transition are saved in the   and load button loads the model updates of the last transition whi
+## Further Improvements
 
 
 
